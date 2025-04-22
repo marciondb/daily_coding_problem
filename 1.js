@@ -15,14 +15,12 @@ function productExceptSelf(nums) {
     let n = nums.length;
     const result = new Array(n).fill(1);
 
-    // First pass: product of all elements to the left of each index.
     let prefix = 1;
     for (let i = 0; i < n; i++) {
         result[i] = prefix;
         prefix *= nums[i];
     }
 
-    // Second pass: product of all elements to the right of each index.
     let suffix = 1;
     for (let i = n - 1; i >= 0; i--) {
         result[i] *= suffix;
@@ -32,17 +30,17 @@ function productExceptSelf(nums) {
     return result;
 }
 
-// Test cases
-console.log(productExceptSelf([1, 2, 3, 4, 5])); // Expected: [120, 60, 40, 30, 24]
-console.log(productExceptSelf([3, 2, 1]));        // Expected: [2, 3, 6]
 
-function productExceptSelf(nums) {
+console.log(productExceptSelf([1, 2, 3, 4, 5]));
+console.log(productExceptSelf([3, 2, 1]));
+
+function productExceptSelf_es6(nums) {
     return nums.map((_, i) =>
         nums.filter((_, j) => j !== i)
             .reduce((acc, cur) => acc * cur, 1)
     );
 }
 
-// Test cases
-console.log(productExceptSelf([1, 2, 3, 4, 5])); // Expected: [120, 60, 40, 30, 24]
-console.log(productExceptSelf([3, 2, 1]));        // Expected: [2, 3, 6]
+
+console.log(productExceptSelf_es6([1, 2, 3, 4, 5]));
+console.log(productExceptSelf_es6([3, 2, 1]));

@@ -52,3 +52,11 @@ function deserialize(data) {
     }
     return helper();
 }
+
+// Exemplo de teste do problema:
+// Cria uma árvore: raiz -> esquerda (com filho esquerdo) e direita
+const node = new Node('root', new Node('left', new Node('left.left')), new Node('right'));
+
+// Verifica se o nó da esquerda do nó da esquerda é igual a 'left.left'
+console.assert(deserialize(serialize(node)).left.left.val === 'left.left', "Teste falhou!");
+console.log("Teste passou!");

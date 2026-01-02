@@ -132,4 +132,14 @@ for (const element of array) {
   console.log(element);
 }
 
-
+const arrayTest = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 100, 14, 15, 16, 17, 18, 19, 20]
+// const arrayTest = Array.from({length: 20}, (_, i) => i +1)
+console.log(arrayTest.reduce((acc, numb) => acc + numb, 0)
+console.log(arrayTest.reduce((bigger, numb) => bigger > numb ? bigger: numb, arrayTest[0])) // arrayTest[0] is a edge case [-1,-2,-3] will be 0 if started if 0
+// console.log(arrayTest.reverse()) // mute the original array!
+const reverseArray = []
+for(let i = arrayTest.length -1; i >= 0; i--){
+  reverseArray.push(arrayTest[i])
+}
+console.log(reverseArray)
+console.log([...arrayTest].reverse()) // use extra memo ...

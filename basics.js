@@ -65,7 +65,7 @@ const orders = [
   { paid: true },
   { paid: false }
 ];
-// 👉 Verifique se existe pelo menos um pedido pago.
+// 👉 Verifique se existe pelo menos um pedido pago. retorna Boolean
 console.log(orders.some(({paid}) => paid))
 
 // 9️⃣ Spread
@@ -110,13 +110,19 @@ console.log(config.timeouts ?? 3000)
 
 // 1️⃣5️⃣ Desafio final (combo)
 // Dado:
-const orders = [
+const orders2 = [
   { id: 1, amount: 100, paid: true },
   { id: 2, amount: 50, paid: false },
   { id: 3, amount: 200, paid: true }
 ];
 // 👉 Calcule o total (amount) apenas dos pedidos pagos.
-console.log(orders.filter( ({paid}) => paid ).reduce((acc, {amount}) => acc + amount, 0))
+console.log(orders2.filter( ({paid}) => paid ).reduce((acc, {amount}) => acc + amount, 0))
+
+
+// NOTES
+// || → use truthy / falsy
+
+// ?? → use null / undefined ONLY
 
 // ==========================================================================================
 
@@ -133,9 +139,24 @@ for (const element of array) {
 }
 
 const arrayTest = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 100, 14, 15, 16, 17, 18, 19, 20]
-// const arrayTest = Array.from({length: 20}, (_, i) => i +1)
-console.log(arrayTest.reduce((acc, numb) => acc + numb, 0)
-console.log(arrayTest.reduce((bigger, numb) => bigger > numb ? bigger: numb, arrayTest[0])) // arrayTest[0] is a edge case [-1,-2,-3] will be 0 if started if 0
+// const arrayTest = Array.from({length: 20}, (_, i) => i + 1)
+console.log(arrayTest.reduce((acc, numb) => acc + numb, 0))
+console.log(arrayTest.reduce((bigger, numb) => bigger > numb ? bigger: numb, arrayTest[0])) // arrayTest[0] is a edge case [-1,-2,-3] will be 0 if started with 0 (...., 0))
+
+// Given an array of strings, create an object where each key is an element of the array 
+// and the value is the number of times that element appears.
+const array = ["apple", "banana", "apple", "orange", "banana", "apple"]
+// expected: {
+//   apple: 3,
+//   banana: 2,
+//   orange: 1
+// }
+console.log(array.reduce( (acc, item) => {
+    // acc[item] ? acc[item] += 1 : acc[item] = 1
+    acc[item] = (acc[item] || 0) + 1
+    return acc
+  }, {}))
+
 // console.log(arrayTest.reverse()) // mute the original array!
 const reverseArray = []
 for(let i = arrayTest.length -1; i >= 0; i--){
@@ -143,3 +164,31 @@ for(let i = arrayTest.length -1; i >= 0; i--){
 }
 console.log(reverseArray)
 console.log([...arrayTest].reverse()) // use extra memo ...
+
+// ==========================================================================================
+
+// SORT - The default sort order is ascending, built upon converting the elements into strings, then comparing their sequences of UTF-16 code unit values.
+const array = [1, 30, 4, 21, 100000];
+array.sort();
+console.log(array);
+// Expected output: Array [1, 100000, 21, 30, 4]
+
+// To order number:
+const compareNumber = (a, b) => a - b
+const numberArray = [40, 1, 5, 200];
+console.log(numberArray.sort(compareNumber))
+// const compareNumber = (a, b) => b - a to be desc
+
+const obj = [
+  { name: "Ana", age: 32 },
+  { name: "João", age: 21 },
+  { name: "Maria", age: 27 },
+  { name: "Pedro", age: 21 }
+]
+console.log(obj.sort((a,b) => a.age - b.age))
+
+// k-n bigger
+const array = [6, 5, 5, 4, 3, 3, 2, 2, 1]
+array.sort((a,b) => b - a)
+const k = 4
+console.log(array[k-1])

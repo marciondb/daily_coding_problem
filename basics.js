@@ -216,10 +216,8 @@ console.log(nums) // [1, 2, 3, 4]
 // Output: 
 // true
 const s = "racecar"
-let left = 0
-let right = s.length - 1
 let isPalindrome = true
-for(let right = 0, left = length -1; left > right; right++, left--) {
+for(let right = 0, left = s.length -1; left > right; right++, left--) {
   if (s[left].toLowerCase() !== s[right].toLowerCase()) {
     isPalindrome = false
     break

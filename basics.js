@@ -192,3 +192,66 @@ const array = [6, 5, 5, 4, 3, 3, 2, 2, 1]
 array.sort((a,b) => b - a)
 const k = 4
 console.log(array[k-1])
+
+// ==========================================================================================
+// Two pointers
+// remove duplicates
+const nums = [1, 1, 2, 2, 3, 4, 4]
+let slow = 0
+for (let fast = 1; fast < nums.length; fast++) {
+  if (nums[fast] !== nums[slow]) {
+    slow++
+    nums[slow] = nums[fast]
+  }
+}
+// cocut the array
+nums.length = slow + 1
+console.log(nums) // [1, 2, 3, 4]
+
+// 🧩 Problem — Valid Palindrome (Two Pointers)
+// Given a string s, determine if it is a palindrome.
+// A palindrome is a string that reads the same forward and backward.
+// Input:
+// s = "racecar"
+// Output: 
+// true
+const s = "racecar"
+let left = 0
+let right = s.length - 1
+let isPalindrome = true
+for(let right = 0, left = length -1; left > right; right++, left--) {
+  if (s[left].toLowerCase() !== s[right].toLowerCase()) {
+    isPalindrome = false
+    break
+  }
+}
+console.log(isPalindrome)
+
+// 🧩 Problem — Two Sum (Sorted Array)
+// Given a sorted array of integers nums and an integer target, 
+// determine if there exist two numbers in the array such that 
+// their sum is equal to target.
+// Return true if such a pair exists, otherwise return false.
+// Input:
+// nums = [1, 2, 3, 4, 6]
+// target = 6
+// Output:
+// true
+const nums2 = [1, 2, 3, 4, 6]
+const target = 8
+let l = 0
+let r = nums2.length - 1
+let found = false
+
+while (l < r) {
+  const sum = nums2[l] + nums2[r]
+  if (sum === target) {
+    found = true
+    break
+  } else if (sum < target) {
+    l++
+  } else {
+    r--
+  }
+}
+console.log(found)

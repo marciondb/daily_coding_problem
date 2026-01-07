@@ -28,15 +28,19 @@ const users = [
   { id: 2, name: "Carlos" }
 ];
 // 👉 Encontre o usuário com id === 2.
-console.log(users.find( user => user.id === 2))
+console.log(users.find( user => user.id === 2)) // return the obj in the array
 console.log(users.find(({id}) => id === 2))
 
 // 5️⃣ Destructuring
 // Dado:
 const user = { name: "João", age: 25 };
 // 👉 Extraia name e age em variáveis.
-const {name, age} = user;
-console.log(name, age)
+const {name: alias, age} = user;
+console.log(alias, age)
+
+const arrayDest = [10,20]
+const [a,b] = arrayDest
+console.log(a)
 
 // 🟡 NÍVEL 2 — Intermediário
 // 6️⃣ reduce
@@ -44,8 +48,6 @@ console.log(name, age)
 const prices = [10, 20, 30];
 // 👉 Calcule o total da soma.
 console.log(prices.reduce( (acc, price) => acc + price, 0))
-const [a,b] = prices
-console.log(a)
 
 // 7️⃣ map + filter
 // Dado:
@@ -145,13 +147,13 @@ console.log(arrayTest.reduce((bigger, numb) => bigger > numb ? bigger: numb, arr
 
 // Given an array of strings, create an object where each key is an element of the array 
 // and the value is the number of times that element appears.
-const array = ["apple", "banana", "apple", "orange", "banana", "apple"]
+const arrayn = ["apple", "banana", "apple", "orange", "banana", "apple"]
 // expected: {
 //   apple: 3,
 //   banana: 2,
 //   orange: 1
 // }
-console.log(array.reduce( (acc, item) => {
+console.log(arrayn.reduce( (acc, item) => {
     // acc[item] ? acc[item] += 1 : acc[item] = 1
     acc[item] = (acc[item] || 0) + 1
     return acc
@@ -168,9 +170,9 @@ console.log([...arrayTest].reverse()) // use extra memo ...
 // ==========================================================================================
 
 // SORT - The default sort order is ascending, built upon converting the elements into strings, then comparing their sequences of UTF-16 code unit values.
-const array = [1, 30, 4, 21, 100000];
-array.sort();
-console.log(array);
+const arrays = [1, 30, 4, 21, 100000];
+arrays.sort();
+console.log(arrays);
 // Expected output: Array [1, 100000, 21, 30, 4]
 
 // To order number:
@@ -188,10 +190,10 @@ const obj = [
 console.log(obj.sort((a,b) => a.age - b.age))
 
 // k-n bigger
-const array = [6, 5, 5, 4, 3, 3, 2, 2, 1]
-array.sort((a,b) => b - a)
+const arrayb = [6, 5, 5, 4, 3, 3, 2, 2, 1]
+arrayb.sort((a,b) => b - a)
 const k = 4
-console.log(array[k-1])
+console.log(arrayb[k-1])
 
 // ==========================================================================================
 // Two pointers
@@ -253,3 +255,86 @@ while (l < r) {
   }
 }
 console.log(found)
+
+
+// ====================================
+// Sliding window
+// 🧩 Problem — Maximum Sum Subarray (Sliding Window)
+// Given an array of integers nums and an integer k, find the maximum sum of any contiguous subarray of size k.
+// Example
+// Input:
+// nums = [2, 1, 5, 1, 3, 2]
+// k = 3
+// Output:
+// 9
+// const numsSliding = [2, 1, 5, 1, 3, 2]
+// const kSlinding = 3
+// let endSlinding = kSlinding
+// const possibleArrays = numsSliding.length - kSlinding + 1
+// let biggerSum = -Infinity
+// for(let startSlice = 0; startSlice < possibleArrays; startSlice++){
+//   const newSlidingArray = numsSliding.slice(startSlice, endSlinding)
+//   endSlinding++
+//   const sumNewSlidingArray = newSlidingArray.reduce((acc, item) => acc + item, 0)
+//   // if( biggerSum < sumNewSlidingArray){
+//   //   biggerSum = sumNewSlidingArray
+//   // }
+//   biggerSum = Math.max(biggerSum, sumNewSlidingArray)
+// }
+// console.log(biggerSum)
+const numsWindow = [2, 1, 5, 1, 3, 2]
+const ks = 3
+let windowSum = 0
+let maxSum = -Infinity
+for (let i = 0; i < numsWindow.length; i++) {
+  windowSum += numsWindow[i]  
+  if (i >= ks - 1) {
+    maxSum = Math.max(maxSum, windowSum)
+    windowSum -= numsWindow[i - (ks - 1)]
+  }
+}
+console.log(maxSum)
+
+// 🧩 Problem 2 — First Non-Repeating Character
+// Given a string s, find the first character that does not repeat in the string.
+// Return the character itself.
+// If no such character exists, return null.
+// Example 1
+// Input:
+// s = "leetcode"
+// Output:
+// "l"
+// Example 2
+// Input:
+// s = "aabb"
+// Output:
+// null
+
+const strNonRepeatToCheck = "leetcode"
+const counter = strNonRepeatToCheck.split("").reduce(( acc, item) => {
+  acc[item] = (acc[item] ?? 0) + 1
+  return acc
+}, {})
+let letter = null
+for(let i=0; i<strNonRepeatToCheck.length;i++){
+  if(counter[strNonRepeatToCheck[i]] === 1){
+    letter = strNonRepeatToCheck[i]
+    break
+  }
+}
+console.log(letter)
+const sstr = "leetcode"
+// 1st pass: frequency counter using Object
+const freq = {}
+for (const char of sstr) {
+  freq[char] = (freq[char] ?? 0) + 1
+}
+// 2nd pass: find first non-repeating character
+let result = null
+for (const char of sstr) {
+  if (freq[char] === 1) {
+    result = char
+    break
+  }
+}
+console.log(result)

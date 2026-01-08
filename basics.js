@@ -28,7 +28,7 @@ const users = [
   { id: 2, name: "Carlos" }
 ];
 // 👉 Encontre o usuário com id === 2.
-console.log(users.find( user => user.id === 2)) // return the obj in the array
+console.log(users.find( user => user.id === 2)) // return the first obj that matches in the array
 console.log(users.find(({id}) => id === 2))
 
 // 5️⃣ Destructuring
@@ -126,7 +126,7 @@ console.log(orders2.filter( ({paid}) => paid ).reduce((acc, {amount}) => acc + a
 
 // ?? → use null / undefined ONLY
 
-// ==========================================================================================
+// FOR OF and IN==========================================================================================
 
 const object = { a: 1, b: 2, c: 3, d:{w:6} };
 console.log(object.a)
@@ -256,6 +256,19 @@ while (l < r) {
 }
 console.log(found)
 
+// a + b = target
+// b = target - a
+const nums3 = [2, 7, 11, 15]
+const target1 = 9
+const map = new Map()
+for (let i = 0; i < nums3.length; i++) {
+  const complement = target1 - nums3[i]
+  if (map.has(complement)) {
+    console.log([map.get(complement), i])
+    break
+  }
+  map.set(nums3[i], i)
+}
 
 // ====================================
 // Sliding window
@@ -310,19 +323,19 @@ console.log(maxSum)
 // Output:
 // null
 
-const strNonRepeatToCheck = "leetcode"
-const counter = strNonRepeatToCheck.split("").reduce(( acc, item) => {
-  acc[item] = (acc[item] ?? 0) + 1
-  return acc
-}, {})
-let letter = null
-for(let i=0; i<strNonRepeatToCheck.length;i++){
-  if(counter[strNonRepeatToCheck[i]] === 1){
-    letter = strNonRepeatToCheck[i]
-    break
-  }
-}
-console.log(letter)
+// const strNonRepeatToCheck = "leetcode"
+// const counter = strNonRepeatToCheck.split("").reduce(( acc, item) => {
+//   acc[item] = (acc[item] ?? 0) + 1
+//   return acc
+// }, {})
+// let letter = null
+// for(let i=0; i<strNonRepeatToCheck.length;i++){
+//   if(counter[strNonRepeatToCheck[i]] === 1){
+//     letter = strNonRepeatToCheck[i]
+//     break
+//   }
+// }
+// console.log(letter)
 const sstr = "leetcode"
 // 1st pass: frequency counter using Object
 const freq = {}
@@ -338,3 +351,18 @@ for (const char of sstr) {
   }
 }
 console.log(result)
+
+function isAnagram(s, t) {
+  if (s.length !== t.length) return false
+  const freq = {}
+  for (const char of s) {
+    freq[char] = (freq[char] ?? 0) + 1
+  }
+
+  for (const char of t) {
+    if (!freq[char]) return false
+    freq[char]--
+  }
+
+  return true
+}

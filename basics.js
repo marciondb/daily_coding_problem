@@ -239,19 +239,19 @@ console.log(isPalindrome)
 // true
 const nums2 = [1, 2, 3, 4, 6]
 const target = 8
-let l = 0
-let r = nums2.length - 1
+let r = 0
+let l = nums2.length - 1
 let found = false
 
-while (l < r) {
-  const sum = nums2[l] + nums2[r]
+while (r < l) {
+  const sum = nums2[r] + nums2[l]
   if (sum === target) {
     found = true
     break
   } else if (sum < target) {
-    l++
+    r++
   } else {
-    r--
+    l--
   }
 }
 console.log(found)

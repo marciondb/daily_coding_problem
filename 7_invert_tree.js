@@ -95,3 +95,14 @@ console.log(invertTreeBFS(tree))
 
 //   return root;
 // }
+
+// ##################################
+function invertTreeImmutable(node) {
+  if (!node) return null;
+
+  return {
+    val: node.val,
+    left: invertTreeImmutable(node.right),
+    right: invertTreeImmutable(node.left),
+  };
+}

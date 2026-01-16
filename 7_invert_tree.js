@@ -51,4 +51,27 @@ function invertTree(treeToInvert) {
   return treeToInvert
 
 }
-console.log(invertTree(tree))
+// console.log(invertTree(tree))
+
+
+// ##################################
+
+function invertTreeBFS(root) {
+  if (!root) return null;
+
+  const queue = [root];
+  let i = 0;
+
+  while (i < queue.length) {
+    const node = queue[i++];
+
+    [node.left, node.right] = [node.right, node.left];
+
+    if (node.left) queue.push(node.left);
+    if (node.right) queue.push(node.right);
+  }
+
+  return root;
+}
+
+console.log(invertTreeBFS(tree))

@@ -15,7 +15,12 @@ const division = (num, divisor) => {
 console.log(division(10, 2)); // 3
 // console.log(division(2, 3));  // 0
 // console.log(division(9, 3));  // 3
-  
+
+// O tempDivisor << 1 serve pra testar:
+
+// “Se eu dobrar o divisor (multiplicar por 2), ainda cabe dentro do número restante?”
+
+// Se sim, a gente dobra e continua até não caber mais, pra tirar o máximo possível de uma vez.
 // const division = (num, divisor) => {
 //   if (divisor === 0) throw new Error("division by zero");
 

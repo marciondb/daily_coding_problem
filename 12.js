@@ -11,6 +11,10 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
 }
 
+// function getRandomInt(min, max) {
+//   return Math.floor(Math.random() * (max - min) + min) // [min, max)
+// }
+
 const randomNumber = (n, list) => {
   const banned = new Set(list)
 

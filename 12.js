@@ -14,6 +14,17 @@ function getRandomInt(min, max) {
 // function getRandomInt(min, max) {
 //   return Math.floor(Math.random() * (max - min) + min) // [min, max)
 // }
+// [min, max)
+// Math.floor(Math.random() * (max - min)) + min
+
+// // [min, max]
+// Math.floor(Math.random() * (max - min + 1)) + min
+
+// // (min, max]
+// Math.floor(Math.random() * (max - min)) + min + 1
+
+// // (min, max)
+// Math.floor(Math.random() * (max - min - 1)) + min + 1
 
 const randomNumber = (n, list) => {
   const banned = new Set(list)

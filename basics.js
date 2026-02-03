@@ -198,7 +198,7 @@ console.log(arrayb[k-1])
 // ==========================================================================================
 // Two pointers
 // remove duplicates
-const nums = [1, 1, 2, 2, 3, 4, 4]
+const nums = [1, 1, 1, 2, 3, 4, 4]
 let slow = 0
 for (let fast = 1; fast < nums.length; fast++) {
   if (nums[fast] !== nums[slow]) {
@@ -366,3 +366,27 @@ function isAnagram(s, t) {
 
   return true
 }
+
+const set = new Set()
+const set2 = new Set([1, 2, 3])
+set.add(10)        // adiciona
+set.has(10)        // true/false
+set.delete(10)     // remove
+set.clear()        // limpa tudo
+set.size
+for (const v of set) console.log(v)
+// [...set]           // → array
+Array.from(set)
+
+const mapp = new Map()
+const map2 = new Map([["a", 1], ["b", 2]])
+map.set("a", 10)   // adiciona/atualiza
+map.get("a")       // valor
+map.has("a")       // true/false
+map.delete("a")    // remove
+map.clear()        // limpa
+map.size
+for (const [k, v] of map) console.log(k, v)
+map.keys()
+map.values()
+map.entries()

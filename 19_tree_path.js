@@ -45,3 +45,22 @@ const tree = new node(
 )
 getPaths(tree, [])
 console.log(result)
+
+// with backtrack
+// function getPaths(node, path){
+// if (!node) return;
+
+//     // adiciona o nó atual ao caminho
+//     path.push(node.val);
+
+//     // se for folha, salva uma cópia do caminho
+//     if (!node.left && !node.right) {
+//       result.push([...path]);
+//     } else {
+//       dfs(node.left, path);
+//       dfs(node.right, path);
+//     }
+
+//     // backtrack
+//     path.pop();
+// }

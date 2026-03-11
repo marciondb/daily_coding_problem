@@ -50,6 +50,28 @@ function minimumPath(root) {
 
   return dfs(root)
 }
+
+// function minimumPath(root) {
+  
+//   function dfs(node) {
+//     if (!node) {
+//       return Infinity
+//     }
+
+//     if (!node.left && !node.right) {
+//       return node.val
+//     }
+
+//     const left = dfs(node.left)
+//     const right = dfs(node.right)
+
+//     return node.val + Math.min(left, right)
+//     // return node.val + Math.min(dfs(node.left), dfs(node.right))
+//   }
+
+//   return dfs(root)
+// }
+
 class treeNode{
   constructor(val, left, right){
     this.left = left

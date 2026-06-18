@@ -158,6 +158,11 @@ console.log(arrayn.reduce( (acc, item) => {
     acc[item] = (acc[item] || 0) + 1
     return acc
   }, {}))
+const freq1 = {}
+for(item of arrayn){
+  freq1[item] = (freq1[item] || 0) + 1
+}
+console.log(freq1)
 
 // console.log(arrayTest.reverse()) // mute the original array!
 const reverseArray = []
